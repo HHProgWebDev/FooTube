@@ -11,8 +11,8 @@
     "eslint": "eslint script.js",
     "stylelint": "stylelint *.scss scss/*.scss --syntax scss",
     "lint": "npm-run-all --parallel eslint stylelint",
-    "babel": "babel script.js --watch --out-file script-compiled.js --source-maps",
-    "browser-sync": "browser-sync start --server --files index.html styles.css script-compiled.js",
+    "babel": "babel src --watch --out-dir lib --source-maps",
+    "browser-sync": "browser-sync start --server --files index.html player.html styles.css lib/script.js lib/script-player.js",
     "sass": "node-sass --source-map-embed --watch styles.scss styles.css",
     "dev": "npm-run-all --parallel sass babel browser-sync"
   },
