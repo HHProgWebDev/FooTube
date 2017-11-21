@@ -43,8 +43,7 @@ function createVideo() {
   //  Bæta við upplýsingum úr videos.json skv. query streng í url.
   loadJSON(function (response) {
     const data = JSON.parse(response);
-    const index = getIndex(data.videos, parseQuery());
-    console.log(index);
+    const index = GetIndexById(data.videos, parseQuery());
     title.appendChild(document.createTextNode(data.videos[index].title));
     video.setAttribute('src', data.videos[index].video);
     video.setAttribute('poster', data.videos[index].poster);
@@ -63,7 +62,7 @@ function createVideo() {
   main.appendChild(returnToIndex);
 
   //  Bæta við takka atburða hlustendum.
-  video.addEventListener('ended', function(e) {
+  video.addEventListener('ended', e => {
     e.preventDefault();
 
     video.pause();
@@ -73,7 +72,7 @@ function createVideo() {
     play.setAttribute('class', 'button button--play');
   })
 
-  play.addEventListener('click', function(e) {
+  play.addEventListener('click', e => {
     e.preventDefault();
 
     if (video.paused) {
@@ -89,6 +88,43 @@ function createVideo() {
       play.setAttribute('class', 'button button--play');
     }
   });
+
+  mute.addEventListener('click', e => {
+    e.preventDefault();
+
+    if(video.volume == 1.0) {
+      video.volume = 0.0;
+      empty(mute);
+      mute.appendChild(document.createTextNode('Hljóð á'));
+      mute.setAttribute('class', 'button button--sound');
+    } else {
+      video.volume = 1.0;
+      empty(mute);
+      mute.appendChild(document.createTextNode('Hljóð af'));
+      mute.setAttribute('class', 'button button--mute');
+    }
+  });
+
+  fullscreen.addEventListener('click', e => {
+    e.preventDefault();
+
+    //requestFullScreen verður það fullscreen fall sem vafrinn styður
+    var requestFullScreen = video.requestFullscreen || video.msRequestFullscreen || video.mozRequestFullScreen || video.webkitRequestFullscreen;
+
+    requestFullScreen.call(video);
+  })
+
+  prev.addEventListener('click', e => {
+    e.preventDefault();
+
+    video.currentTime -= 3;
+  })
+
+  next.addEventListener('click', e => {
+    e.preventDefault();
+
+    video.currentTime += 3;
+  })
 
 }
 /*
@@ -145,7 +181,7 @@ function parseQuery() {
 * getIndex tekur fylki data af hlutum obj og skilar index af data
 * með attribute obj.id=id.
 */
-function getIndex(data, id) {
+function GetIndexById(data, id) {
   let ind = 0;
   let index = 0;
 
