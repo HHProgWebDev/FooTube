@@ -68,15 +68,6 @@ function timeSinceCreated(created) {
 }
 
 /*
-* empty tæmir öll börn el.
-*/
-function empty(el) {
-  while (el.firstChild) {
-    el.removeChild(el.firstChild);
-  }
-}
-
-/*
 * loadJSON hleður inn videos.json með XMLHttpRequest
 */
 function loadJSON(callback) {
@@ -89,12 +80,16 @@ function loadJSON(callback) {
     if (r.status >= 200 && r.status < 400) {
       callback(r.response);
     } else {
-      console.log('villa!', r);
+      // Lætur vita að villa hefur átt sér stað
+      // eslint-disable-next-line no-console
+      console.log('Villa!', r);
     }
   };
 
   r.onerror = () => {
-    console.log('villa í tengingu');
+    // Lætur vita að villa hefur átt sér stað
+    // eslint-disable-next-line no-console
+    console.log('Villa í tengingu');
   };
 
   r.send();
@@ -131,7 +126,7 @@ function createCategory(main, category, videos) {
   section.setAttribute('class', 'category');
   sectionTitle.setAttribute('class', 'category__title');
   sectionTitle.appendChild(document.createTextNode(category.title));
-  sectionItems.setAttribute('class', 'category__items');
+  sectionItems.setAttribute('class', 'category__items row');
 
   main.appendChild(section);
   section.appendChild(sectionTitle);
@@ -147,7 +142,7 @@ function createCategory(main, category, videos) {
     const videoTitle = document.createElement('h3');
     const videoDate = document.createElement('p');
 
-    videoLink.setAttribute('class', 'video');
+    videoLink.setAttribute('class', 'video col col-4 col-md-6 col-sm-12');
     videoLink.setAttribute('href', `./player.html?id=${videoId}`);
     videoImage.setAttribute('class', 'video__image');
     videoImg.setAttribute('class', 'video__img');
@@ -176,8 +171,6 @@ function createCategory(main, category, videos) {
 */
 function initIndex() {
   const main = document.querySelector('main');
-
-  empty(main);
 
   loadJSON((response) => {
     const data = JSON.parse(response);

@@ -1,16 +1,18 @@
-body {
-  font-family: 'Helvetica Neue', sans-serif;
+body { /* stylelint-disable-line */
+  font-family: "Helvetica Neue", sans-serif;
 }
 
-a {
+a { /* stylelint-disable-line */
   color: #fff;
   text-decoration: none;
 }
 
 .heading--one {
+  margin: 2rem 0;
   font-size: 2rem;
 }
 
 .category__title {
+  margin-bottom: 1.5rem;
   font-size: 2rem;
 }

@@ -26,11 +26,15 @@ function loadJSON(callback) {
     if (r.status >= 200 && r.status < 400) {
       callback(r.response);
     } else {
+      // Lætur vita að villa hefur átt sér stað
+      // eslint-disable-next-line no-console
       console.log('villa!', r);
     }
   };
 
   r.onerror = () => {
+    // Lætur vita að villa hefur átt sér stað
+    // eslint-disable-next-line no-console
     console.log('villa í tengingu');
   };
 
@@ -87,7 +91,6 @@ function createVideo() {
   empty(body);
 
   //  Búa til element.
-  const videoDiv = document.createElement('div');
   const title = document.createElement('h1');
   const videoframe = document.createElement('div');
   const video = document.createElement('video');
@@ -102,7 +105,6 @@ function createVideo() {
   const loadError = document.createElement('p');
 
   //  Bæta við texta og attribute á element.
-  videoDiv.setAttribute('class', 'video-block');
   title.setAttribute('class', 'video-title');
   videoframe.setAttribute('class', 'video-frame');
   video.setAttribute('class', 'videoplayer');
@@ -120,6 +122,7 @@ function createVideo() {
   next.setAttribute('class', 'button button--next');
   returnToIndex.appendChild(document.createTextNode('Til baka'));
   returnToIndex.setAttribute('href', './index.html');
+  returnToIndex.setAttribute('class', 'back-to-index');
   loadError.appendChild(document.createTextNode('Gat ekki hlaðið myndbandi'));
   loadError.setAttribute('class', 'hidden');
 
@@ -132,7 +135,9 @@ function createVideo() {
       video.setAttribute('src', data.videos[index].video);
       video.setAttribute('poster', data.videos[index].poster);
     } else {
-      videoDiv.setAttribute('class', 'hidden');
+      title.setAttribute('class', 'hidden');
+      buttonDiv.setAttribute('class', 'hidden');
+      videoframe.setAttribute('class', 'hidden');
       loadError.setAttribute('class', 'loadError');
     }
   });
