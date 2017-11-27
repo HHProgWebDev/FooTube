@@ -13,8 +13,10 @@ function createVideo() {
 
   //  Búa til element.
   const title = document.createElement('h1');
+  const videoframe = document.createElement('div');
   const video = document.createElement('video');
-  const buttonDiv = document.createElement('div')
+  const videoplayerDiv = document.createElement('div');
+  const buttonDiv = document.createElement('div');
   const back = document.createElement('button');
   const play = document.createElement('button');
   const mute = document.createElement('button');
@@ -24,7 +26,9 @@ function createVideo() {
 
   //  Bæta við texta og attribute á element.
   title.setAttribute('class', 'video-title');
+  videoframe.setAttribute('class', 'video-frame');
   video.setAttribute('class', 'videoplayer');
+  videoplayerDiv.setAttribute('class', 'videoplayer-overlay');
   buttonDiv.setAttribute('class', 'button-block');
   back.appendChild(document.createTextNode('Fyrra'));
   back.setAttribute('class', 'button button--back');
@@ -51,7 +55,9 @@ function createVideo() {
   //  Setja inn element
   body.appendChild(main);
   main.appendChild(title);
-  main.appendChild(video);
+  main.appendChild(videoframe);
+  videoframe.appendChild(video);
+  videoframe.appendChild(videoplayerDiv);
   main.appendChild(buttonDiv);
   buttonDiv.appendChild(back);
   buttonDiv.appendChild(play);
@@ -79,12 +85,14 @@ function createVideo() {
       empty(play);
       play.appendChild(document.createTextNode('Stoppa'));
       play.setAttribute('class', 'button button--pause');
+      document.querySelector('.videoplayer-overlay').setAttribute('class', 'videoplayer-overlay hidden');
     }
     else {
       video.pause();
       empty(play);
       play.appendChild(document.createTextNode('Spila'));
       play.setAttribute('class', 'button button--play');
+      document.querySelector('.videoplayer-overlay').setAttribute('class', 'videoplayer-overlay');
     }
   });
 
