@@ -15,7 +15,7 @@ function createVideo() {
   const title = document.createElement('h1');
   const video = document.createElement('video');
   const buttonDiv = document.createElement('div')
-  const prev = document.createElement('button');
+  const back = document.createElement('button');
   const play = document.createElement('button');
   const mute = document.createElement('button');
   const fullscreen = document.createElement('button');
@@ -24,10 +24,10 @@ function createVideo() {
 
   //  Bæta við texta og attribute á element.
   title.setAttribute('class', 'video-title');
-  video.setAttribute('class', 'video');
+  video.setAttribute('class', 'videoplayer');
   buttonDiv.setAttribute('class', 'button-block');
-  prev.appendChild(document.createTextNode('Fyrra'));
-  prev.setAttribute('class', 'button button--prev');
+  back.appendChild(document.createTextNode('Fyrra'));
+  back.setAttribute('class', 'button button--back');
   play.appendChild(document.createTextNode('Spila'));
   play.setAttribute('class', 'button button--play');
   mute.appendChild(document.createTextNode('Hljóð af'));
@@ -37,8 +37,7 @@ function createVideo() {
   next.appendChild(document.createTextNode('Næsta'));
   next.setAttribute('class', 'button button--next');
   returnToIndex.appendChild(document.createTextNode('Til baka'));
-  returnToIndex.setAttribute('href', '../');
-
+  returnToIndex.setAttribute('href', './index.html');
 
   //  Bæta við upplýsingum úr videos.json skv. query streng í url.
   loadJSON(function (response) {
@@ -50,11 +49,11 @@ function createVideo() {
   });
 
   //  Setja inn element
-  body.appendChild(title);
   body.appendChild(main);
+  main.appendChild(title);
   main.appendChild(video);
   main.appendChild(buttonDiv);
-  buttonDiv.appendChild(prev);
+  buttonDiv.appendChild(back);
   buttonDiv.appendChild(play);
   buttonDiv.appendChild(mute);
   buttonDiv.appendChild(fullscreen);
@@ -114,7 +113,7 @@ function createVideo() {
     requestFullScreen.call(video);
   })
 
-  prev.addEventListener('click', e => {
+  back.addEventListener('click', e => {
     e.preventDefault();
 
     video.currentTime -= 3;
