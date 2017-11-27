@@ -25,26 +25,27 @@ function initIndex() {
 function createCategory(main, category, videos) {
   const section = document.createElement('section');
   const sectionTitle = document.createElement('h2');
+  const sectionItems = document.createElement('div');
 
   section.setAttribute('class', 'category');
   sectionTitle.setAttribute('class', 'category__title');
   sectionTitle.appendChild(document.createTextNode(category.title));
+  sectionItems.setAttribute('class', 'category__items');
 
   main.appendChild(section);
   section.appendChild(sectionTitle);
+  section.appendChild(sectionItems);
 
   category.videos.forEach(function (videoId) {
     let vIndex = GetIndexById(videos, videoId);
 
-    let sectionItem = document.createElement('div');
     let videoLink = document.createElement('a');
     let videoImage = document.createElement('div');
     let videoImg = document.createElement('img');
     let videoLength = document.createElement('div');
-    let videoTitle = document.createElement('h2');
-    let videoDate = document.createElement('h3');
+    let videoTitle = document.createElement('h3');
+    let videoDate = document.createElement('p');
 
-    sectionItem.setAttribute('class', 'category__item');
     videoLink.setAttribute('class', 'video');
     videoLink.setAttribute('href', './player.html?id=' + videoId);
     videoImage.setAttribute('class', 'video__image');
@@ -57,14 +58,15 @@ function createCategory(main, category, videos) {
     videoDate.setAttribute('class', 'video__date');
     videoDate.appendChild(document.createTextNode(timeSinceCreated(videos[vIndex].created)));
 
-    section.appendChild(sectionItem);
-    sectionItem.appendChild(videoLink);
+    sectionItems.appendChild(videoLink);
     videoLink.appendChild(videoImage);
     videoImage.appendChild(videoImg);
     videoImage.appendChild(videoLength);
     videoLink.appendChild(videoTitle);
     videoLink.appendChild(videoDate);
-  })
+  });
+
+  main.appendChild(document.createElement('hr'));
 }
 
 function durationFormat(duration) {
@@ -73,9 +75,10 @@ function durationFormat(duration) {
   const min = Math.floor(duration / minInSec);
   const sec = duration - min * minInSec;
 
-  return `${min}:${sec}`;
+  const minStr = '' + min;
+  const secStr = (sec < 10 ? '0' + sec : '' + sec);
 
-
+  return `${minStr}:${secStr}`;
 }
 
 /*
