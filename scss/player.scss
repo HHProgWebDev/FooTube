@@ -12,7 +12,6 @@
     bottom: 0;
     left: 0;
     right: 0;
-    visibility: visible;
 
     background-image: url('./img/play.svg');
     background-position: center;
@@ -20,8 +19,8 @@
     background-size: 42px 42px;
     background-color: rgba(0, 0, 0, 0.2);
 
-    &.hidden {
-      visibility: hidden;
+    &.playing {
+      background: none;
     }
   }
 }

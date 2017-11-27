@@ -163,7 +163,7 @@ function createVideo() {
     play.setAttribute('class', 'button button--play');
   });
 
-  play.addEventListener('click', (e) => {
+  function playClick(e) {
     e.preventDefault();
 
     if (video.paused) {
@@ -171,15 +171,18 @@ function createVideo() {
       empty(play);
       play.appendChild(document.createTextNode('Stoppa'));
       play.setAttribute('class', 'button button--pause');
-      document.querySelector('.videoplayer-overlay').setAttribute('class', 'videoplayer-overlay hidden');
+      videoplayerDiv.setAttribute('class', 'videoplayer-overlay playing');
     } else {
       video.pause();
       empty(play);
       play.appendChild(document.createTextNode('Spila'));
       play.setAttribute('class', 'button button--play');
-      document.querySelector('.videoplayer-overlay').setAttribute('class', 'videoplayer-overlay');
+      videoplayerDiv.setAttribute('class', 'videoplayer-overlay');
     }
-  });
+  }
+
+  play.addEventListener('click', playClick);
+  videoplayerDiv.addEventListener('click', playClick);
 
   mute.addEventListener('click', (e) => {
     e.preventDefault();
