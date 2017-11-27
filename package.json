@@ -8,7 +8,7 @@
   },
   "main": "scripts.js",
   "scripts": {
-    "eslint": "eslint script.js",
+    "eslint": "eslint src/script-player.js src/script.js",
     "stylelint": "stylelint *.scss scss/*.scss --syntax scss",
     "lint": "npm-run-all --parallel eslint stylelint",
     "babel": "babel src --watch --out-dir lib --source-maps",
