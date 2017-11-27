@@ -1,0 +1,31 @@
+.video {
+  display: block;
+  max-width: $item_width;
+  margin: 0 $item_gutter 4*$item_gutter $item_gutter;
+
+  &__image {
+    position: relative;
+  }
+
+  &__img {
+    width: 100%;
+  }
+
+  &__length {
+    position: absolute;
+    bottom: 1rem;
+    right: 0.3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0.3rem 0.4rem;
+  }
+
+  &__title {
+    margin: $item_gutter 0;
+    font-size: 1.125rem;
+  }
+
+  &__date {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}

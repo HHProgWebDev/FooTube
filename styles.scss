@@ -1,0 +1,28 @@
+$gutter: 0.75rem;
+$item_width: 31.25rem;
+$item_gutter: $gutter/2;
+$max_items: 3;
+
+body {
+  font-size: 16px;
+  background-color: #333;
+  color: #fff;
+  padding: 0 $gutter;
+  margin: 0;
+}
+
+hr {
+  width: 80%;
+  border: none;
+  border-top: 1px solid #fff;
+  margin: 3rem auto;
+}
+
+.wrapper {
+  max-width: $max_items*$item_width + ($max_items+1)*$item_gutter;
+  margin: 0 auto;
+}
+
+@import "scss/typography";
+@import "scss/category";
+@import "scss/video";
