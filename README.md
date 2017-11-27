@@ -1,5 +1,5 @@
-# FooTube
-====
+FooTube
+=======
 
 ## Keyrsla verkefnis
 Til þess að setja síðuna upp á þinni tölvu þarftu að hafa git og npm sett upp á tölvunni þinni og keyra eftirfarandi skipanir:
@@ -22,13 +22,12 @@ Verkefnið samanstendur af sex möppum og rót.
  * `videos.json` skrá sem inniheldur upplýsingar um öll myndböndin og alla flokkana.
  * `package.json` skrá sem inniheldur upplýsingar fyrir npm til þess að þýða skrár, linta javascript og scss skrár og keyra þróunarumhverfi verkefnis.
 
- ### Möppur 
+ ### Möppur
  * `img` mappa sem inniheldur myndir fyrir myndbandsspilarann.
  * `videos` mappa sem innheldur myndböndin og samsvarandi poster mynd.
  * `src` mappa sem inniheldur javascript sem notar ECMA2015 staðalinn.
  * `lib` mappa sem inniheldur javascript sem er þýtt með babel frá `src` möppunni.
  * `scss` mappa sem inniheldur þær `.scss` skrár sem að `styles.scss` kallar í.
- * `node_modules` mappa sem inniheldur öll tólin fyrir verkefnið.
 
 Scss-inu er skipt niður í einingar eftir hlutverki þess og/eða staðsetningu í verkefni. Þannig er útlit myndbanda í index.html með sér `video.scss` skrá sem að sér um flesta þá stíla sem henni við kemur. Þannig reyndum við að brjóta verkefnið niður í sem flestar heildstæðar einingar.
 
